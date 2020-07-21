@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option objc_class_prefix = "HLW";
+
+package averagepixel;
+
+// Service definition.
+service ImageStatistics {
+  // Sends a greeting
+  rpc AgeragePixel (ImageLocation) returns (PixelValue) {}
+}
+
+// Location of the image
+message ImageLocation {
+  string filepath = 1;
+}
+
+// The response message containing the greetings
+message PixelValue {
+  int32 red = 1;
+  int32 green = 2;
+  int32 blue = 3;
+}
