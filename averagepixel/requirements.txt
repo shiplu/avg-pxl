@@ -3,3 +3,4 @@ black
 grpcio
 grpcio-tools
 grpcio-reflection
+Pillow
