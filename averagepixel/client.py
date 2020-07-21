@@ -10,12 +10,12 @@ import imagestatistics_pb2_grpc
 
 
 def cli_args():
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("image", help="image file path")
-    parser.add_argument("--host", help="server host", default='127.0.0.1')
-    parser.add_argument(
-        "--port", type=int, help="server port", default=30001
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
+    parser.add_argument("image", help="image file path")
+    parser.add_argument("--host", help="server host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, help="server port", default=30001)
     return parser.parse_args()
 
 

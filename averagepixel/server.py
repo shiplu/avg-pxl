@@ -30,30 +30,36 @@ def cli_args():
     )
     return parser.parse_args()
 
-    
+
 class ImageStatistics(imagestatistics_pb2_grpc.ImageStatisticsServicer):
     def get_average_rgb(self, filepath):
         logger.debug("calculating average pixel value of {}".format(filepath))
         image = Image.open(filepath)
         pixel_count = mul(*image.size)
 
-        # Read image data as we read the file. 
+        # Read image data as we read the file.
         # This way we don't have to store all data in memory
         red, green, blue = 0.0, 0.0, 0.0
         for pixel in image.getdata():
-            red += pixel[0]/ pixel_count
-            green += pixel[1]/ pixel_count
-            blue += pixel[2]/ pixel_count
- 
+            red += pixel[0] / pixel_count
+            green += pixel[1] / pixel_count
+            blue += pixel[2] / pixel_count
+
         image.close()
-        
-        logger.debug("{} has average pixel value of ({}, {}, {})".format(filepath, red, green, blue))
+
+        logger.debug(
+            "{} has average pixel value of ({}, {}, {})".format(
+                filepath, red, green, blue
+            )
+        )
 
         return int(red), int(green), int(blue)
 
     def AgeragePixel(self, request, context):
         pixel = self.get_average_rgb(request.filepath)
-        return imagestatistics_pb2.PixelValue(red=pixel[0], green=pixel[1], blue=pixel[2])
+        return imagestatistics_pb2.PixelValue(
+            red=pixel[0], green=pixel[1], blue=pixel[2]
+        )
 
 
 class TerminationHandler:

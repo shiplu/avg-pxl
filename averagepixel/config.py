@@ -5,7 +5,9 @@ log_config = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "standard": {"format": "%(asctime)s [%(levelname)7s] %(process)d:%(thread)X:%(name)s: %(message)s"},
+        "standard": {
+            "format": "%(asctime)s [%(levelname)7s] %(process)d:%(thread)X:%(name)s: %(message)s"
+        },
     },
     "handlers": {
         "cli": {
