@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  image-stat:
+    build: .
+    restart: always
+    command: python -m server
+    volumes:
+      - ../data:/data
+    environment: 
+      PYTHONPATH: /code

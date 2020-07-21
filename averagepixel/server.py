@@ -78,7 +78,9 @@ class TerminationHandler:
 
 def main():
     args = cli_args()
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(
+        futures.ThreadPoolExecutor(max_workers=10),
+        maximum_concurrent_rpcs=10)
     imagestatistics_pb2_grpc.add_ImageStatisticsServicer_to_server(
         ImageStatistics(), server
     )
