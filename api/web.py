@@ -110,7 +110,7 @@ class PostImagePixelAverage(BaseResource):
         with imagestatistics_client.stub_client(
             config.IMAGE_STATISTICS_HOST, config.IMAGE_STATISTICS_PORT
         ) as client:
-            response = client.AgeragePixel(
+            response = client.AveragePixel(
                 imagestatistics_pb2.ImageLocation(filepath=filename)
             )
 

@@ -60,7 +60,7 @@ class ImageStatistics(imagestatistics_pb2_grpc.ImageStatisticsServicer):
 
         return int(red), int(green), int(blue)
 
-    def AgeragePixel(self, request, context):
+    def AveragePixel(self, request, context):
         pixel = self.get_average_rgb(request.filepath)
         return imagestatistics_pb2.PixelValue(
             red=pixel[0], green=pixel[1], blue=pixel[2]

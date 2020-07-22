@@ -7,7 +7,7 @@ package averagepixel;
 // Service definition.
 service ImageStatistics {
   // Sends a greeting
-  rpc AgeragePixel (ImageLocation) returns (PixelValue) {}
+  rpc AveragePixel (ImageLocation) returns (PixelValue) {}
 }
 
 // Location of the image

@@ -45,7 +45,7 @@ def stub_client(host, port):
 def run():
     args = cli_args()
     with stub_client(args.host, args.port) as stub:
-        response = stub.AgeragePixel(
+        response = stub.AveragePixel(
             imagestatistics_pb2.ImageLocation(filepath=args.image)
         )
     print(
