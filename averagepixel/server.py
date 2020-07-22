@@ -70,6 +70,7 @@ class ImageStatistics(imagestatistics_pb2_grpc.ImageStatisticsServicer):
 class TerminationHandler:
     """Handles graceful termination of a server
     """
+
     def __init__(self, server, grace_period=10):
         """Initialized termination handler
 
