@@ -12,7 +12,6 @@ from operator import mul
 from dataclasses import dataclass
 
 import grpc
-from grpc_reflection.v1alpha import reflection
 from PIL import Image
 
 import config
@@ -79,16 +78,11 @@ class TerminationHandler:
 def main():
     args = cli_args()
     server = grpc.server(
-        futures.ThreadPoolExecutor(max_workers=10),
-        maximum_concurrent_rpcs=10)
+        futures.ThreadPoolExecutor(max_workers=10), maximum_concurrent_rpcs=10
+    )
     imagestatistics_pb2_grpc.add_ImageStatisticsServicer_to_server(
         ImageStatistics(), server
     )
-    SERVICE_NAMES = (
-        imagestatistics_pb2.DESCRIPTOR.services_by_name["ImageStatistics"].full_name,
-        reflection.SERVICE_NAME,
-    )
-    reflection.enable_server_reflection(SERVICE_NAMES, server)
     server.add_insecure_port("{}:{}".format(args.host, args.port))
     server.start()
     signal.signal(signal.SIGTERM, TerminationHandler(server, 5))
