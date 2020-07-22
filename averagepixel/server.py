@@ -32,7 +32,7 @@ def cli_args():
 
 class ImageStatistics(imagestatistics_pb2_grpc.ImageStatisticsServicer):
     def get_average_rgb(self, filepath):
-        """Calcualte the average rgb value of an image file in specified path
+        """Calculate the average rgb value of an image file in specified path
 
         Args:
             filepath (string): image file path
