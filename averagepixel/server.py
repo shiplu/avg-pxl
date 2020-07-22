@@ -32,6 +32,14 @@ def cli_args():
 
 class ImageStatistics(imagestatistics_pb2_grpc.ImageStatisticsServicer):
     def get_average_rgb(self, filepath):
+        """Calcualte the average rgb value of an image file in specified path
+
+        Args:
+            filepath (string): image file path
+
+        Returns:
+            tuple: 3-tuple of integers containing Red, Green and Blue components
+        """
         logger.debug("calculating average pixel value of {}".format(filepath))
         red, green, blue = 0.0, 0.0, 0.0
         with Image.open(filepath) as image:
@@ -60,13 +68,21 @@ class ImageStatistics(imagestatistics_pb2_grpc.ImageStatisticsServicer):
 
 
 class TerminationHandler:
-    def __init__(self, server, grace=10):
+    """Handles graceful termination of a server
+    """
+    def __init__(self, server, grace_period=10):
+        """Initialized termination handler
+
+        Args:
+            server (grpc.Server): grpc server
+            grace_period (int, optional): gracefull shutdown period. Defaults to 10.
+        """
         self.server = server
-        self.grace = grace
+        self.grace_period = grace_period
 
     def __call__(self, signum, frame):
         logger.info("Got signal {}. Stopping server. . .".format(signum))
-        event = self.server.stop(self.grace)
+        event = self.server.stop(self.grace_period)
         logger.info("Stopped RPC server, Waiting for RPCs to complete. . .")
         event.wait()
         logger.info("Goodbye!")
