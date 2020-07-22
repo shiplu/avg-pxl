@@ -25,6 +25,7 @@ def cli_args():
     parser.add_argument("--port", type=int, help="server port", default=30001)
     return parser.parse_args()
 
+
 @contextmanager
 def stub_client(host, port):
     """Provides a GRPC stub to interact with server
