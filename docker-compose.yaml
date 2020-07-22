@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  image-stat:
+    build: 
+      context: ./averagepixel
+    restart: on-failure
+    hostname: image-stat
+    command: python -m server --port 80
+    volumes:
+      - ./data:/data
+      - ./averagepixel:/code
+    environment: 
+      PYTHONPATH: /code
+    working_dir: /code
+
+  image-api:
+    build: 
+      context: ./api
+    hostname: image-api
+    volumes:
+      - ./data:/data
+      - ./api:/code
+    environment: 
+      PYTHONPATH: /code
+    restart: on-failure
+    command: bash run_web.sh 80
+    ports:
+      - "8000:80"
+    working_dir: /code
+
+
