@@ -2,8 +2,10 @@ INCLUDES=../protos
 SOURCE=../protos/imagestatistics.proto
 COMPILER=python -m grpc_tools.protoc
 
+all: test
 
-all: imagestatistics_pb2.py imagestatistics_pb2_grpc.py
+test: imagestatistics_pb2.py imagestatistics_pb2_grpc.py
+	PYTHONPATH=. pytest
 
 imagestatistics_pb2_grpc.py:
 	${COMPILER} -I${INCLUDES}  ${SOURCE} --grpc_python_out=.

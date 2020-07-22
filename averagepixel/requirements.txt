@@ -3,3 +3,4 @@ black
 grpcio
 grpcio-tools
 Pillow
+pytest

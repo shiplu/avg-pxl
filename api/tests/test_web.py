@@ -41,7 +41,7 @@ class TestPostImagePixelAverage(TestCase):
             mock_request.files = {"image": mock.Mock(filename="")}
             self.assertEqual(pipa.post(), ({"error": "No selected file"}, 400))
 
-    def test_post_emtpy_file(self):
+    def test_post_empty_file(self):
         pipa = PostImagePixelAverage()
         with mock.patch("web.request") as mock_request:
             mock_request.files = {"image": mock.MagicMock()}

@@ -1,6 +1,5 @@
 flask
 flask_restful
-webargs
 gevent
 gunicorn
 
@@ -8,3 +7,4 @@ pip>=9.0.1
 black
 grpcio
 grpcio-tools
+pytest
