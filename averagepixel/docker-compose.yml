@@ -5,7 +5,7 @@ services:
   image-stat:
     build: .
     restart: always
-    command: python -m server
+    command: python -m server --port 80
     volumes:
       - ../data:/data
     environment: 
